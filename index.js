@@ -22,7 +22,7 @@ client.on("message", msg => {
   var html_channel = '840777849496403978';
   var botspam_channel = '840777690838859798';
   var messaged_channel = msg.channel.id;
-  if (((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)) || (messaged_channel == botspam_channel)){ // Copy message to d8 channel and delete original
+  if ((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)){ // Copy message to d8 channel and delete original
     var message = msg.content;
     console.log('Recieved Link').listen(process.env.PORT);
     msg.delete();
