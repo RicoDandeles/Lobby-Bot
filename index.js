@@ -13,14 +13,15 @@ client.on("message", msg => {
   var wdf_channel = '840515343054667807';
   var wdp_channel = '840515498327277578';
   var html_channel = '840777849496403978';
+  var botspam_channel = '840777690838859798';
   var messaged_channel = msg.channel.id;
-  if ((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)){ // Copy message to d8 channel and delete original
+  if (((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)) || (messaged_channel == botspam_channel)){ // Copy message to d8 channel and delete original
     var message = msg.content;
     console.log('Recieved Link');
     msg.delete();
     client.channels.cache.get(d8_channel).send(msg.content);
     console.log('Sent Link');
-    setTimeout(() => { console.log("Wait for Developer-8 Bot"); }, 1000);
+    setTimeout(() => { console.log("Wait for Developer-8 Bot"); }, 500);
     client.on("message", msg => {
       messaged_channel = msg.channel.id;
       if (messaged_channel == d8_channel){                                       // Copy message from d8 channel and send to html channel
