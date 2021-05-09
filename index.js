@@ -6,7 +6,7 @@ const discordtoken = 'NDg3MzczOTgyMjc4ODc3MTk5.YIrx9g.0SZrtmOAV9Ewe5QQ1wmpqHynFY
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-}).listen(process.env.PORT);
+})
 
 client.on("message", msg => {
   var d8_channel = '840849015461380099';
@@ -17,7 +17,7 @@ client.on("message", msg => {
   var messaged_channel = msg.channel.id;
   if (((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)) || (messaged_channel == botspam_channel)){ // Copy message to d8 channel and delete original
     var message = msg.content;
-    console.log('Recieved Link');
+    console.log('Recieved Link').listen(process.env.PORT);
     msg.delete();
     client.channels.cache.get(d8_channel).send(msg.content);
     console.log('Sent Link');
