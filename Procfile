@@ -1,2 +1,2 @@
-web:    lein run -m myapp.web
-worker: lein run -m myapp.worker
+web:    run -m myapp.web
+worker: run -m myapp.worker
