@@ -6,7 +6,7 @@ const discordtoken = 'NDg3MzczOTgyMjc4ODc3MTk5.YIrx9g.0SZrtmOAV9Ewe5QQ1wmpqHynFY
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-});
+}).listen(process.env.PORT);
 
 client.on("message", msg => {
   var d8_channel = '840849015461380099';
