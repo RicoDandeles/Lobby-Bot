@@ -4,10 +4,6 @@ const client = new Discord.Client();
 const discordusername = '@emoboy'
 const discordtoken = 'NDg3MzczOTgyMjc4ODc3MTk5.YIrx9g.0SZrtmOAV9Ewe5QQ1wmpqHynFY4'
 
-const host = '0.0.0.0';
-const port = process.env.PORT || 3000;
-app.listen(process.env.PORT, '0.0.0.0');
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 })
