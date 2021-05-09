@@ -1,1 +1,2 @@
-web: bundle exec thin start -p $PORT
+$ cat Procfile
+web: npm start -p $PORT
