@@ -1,3 +1,3 @@
 $ cat Procfile
-web: npm thin start -p $PORT
+web: npm start -p $PORT
  
