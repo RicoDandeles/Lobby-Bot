@@ -26,6 +26,9 @@ client.on("message", msg => {
     var message = msg.content;
     console.log('Recieved Link');
     msg.delete();
+    if (message == "ping"){
+      break;
+    }
     client.channels.cache.get(d8_channel).send(msg.content);
     console.log('Sent Link');
     setTimeout(() => { console.log("Wait for Developer-8 Bot"); }, 500);
