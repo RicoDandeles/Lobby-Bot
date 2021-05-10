@@ -27,7 +27,7 @@ client.on("message", msg => {
     console.log('Recieved Link');
     msg.delete();
     if (message == "ping"){
-      break;
+      return;
     }
     client.channels.cache.get(d8_channel).send(msg.content);
     console.log('Sent Link');
