@@ -24,7 +24,7 @@ client.on("message", msg => {
   var messaged_channel = msg.channel.id;
   if ((messaged_channel == wdf_channel) || (messaged_channel == wdp_channel)){ // Copy message to d8 channel and delete original
     var message = msg.content;
-    console.log('Recieved Link').listen(process.env.PORT);
+    console.log('Recieved Link');
     msg.delete();
     client.channels.cache.get(d8_channel).send(msg.content);
     console.log('Sent Link');
