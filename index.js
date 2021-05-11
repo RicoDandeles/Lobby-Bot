@@ -17,7 +17,7 @@ const discordusername = 'BOTNAME#0000'
 const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
 const serviceFree_channel = '840515343054667807';
 const servicePaid_channel = '000000000000000000';
-const serviceDomain = 'http://www.WEBSITE.com';
+const serviceDomain = 'http://www.brainly.com';
 //
 
 client.on("ready", () => {
@@ -31,7 +31,7 @@ client.on("message", msg => {
   };
   if (messaged_channel == servicePaid_channel){
       var active_channel = servicePaid_channel;
-  };
+  }
   else{
       return;
   };
