@@ -40,8 +40,13 @@ client.on("message", msg => {
   if (link.includes(serviceDomain)){
     console.log('Link is valid');
     link = link.replace("com", "club");
-    puppeteer.launch({ headless: true }).then(async browser => {
-        const browser = await puppeteer.launch();
+    gotosite(link)
+  };
+  console.log('End');
+});
+
+async function gotosite(link){
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage()
         await page.goto(link)
         console.log('At webpage');
@@ -58,12 +63,7 @@ client.on("message", msg => {
                 files: [ "download.html" ]
             });
         }); 
-    });
-    
-  };
-  console.log('End');
-});
-        
+    };
         
         
 
