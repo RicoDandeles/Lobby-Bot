@@ -46,9 +46,9 @@ client.on("message", async msg => {
         .then(response => {
             writeFileSync('./response.html', response);
             var web_file = response.html;
-            web_file = web_file.replace(<title>Brainly.club</title>,'<title>Homework Senpai</title>')
-            web_file = web_file.replace(<img src="/logo.png" style="width:200px;margin-bottom:20px;">,"<img src="/homework_senpai.png" style="width:200px;margin-bottom:20px;">")
-            web_file = web_file.replace(<a href="https://clusters.top/discord" class="alert-link" target="_blank">here</a>,'<a href="https://discord.gg/XM35RczsuQ" class="alert-link" target="_blank">here</a>');
+            web_file = web_file.replace('<title>Brainly.club</title>','<title>Homework Senpai</title>')
+            web_file = web_file.replace('<img src="/logo.png" style="width:200px;margin-bottom:20px;">','<img src="/homework_senpai.png" style="width:200px;margin-bottom:20px;">')
+            web_file = web_file.replace('<a href="https://clusters.top/discord" class="alert-link" target="_blank">here</a>','<a href="https://discord.gg/XM35RczsuQ" class="alert-link" target="_blank">here</a>');
             msg.author.send("Here is your requested page.", {
                 files: [ join(__dirname, web_file) ]
             });
