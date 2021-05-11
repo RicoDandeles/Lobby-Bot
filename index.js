@@ -26,11 +26,12 @@ client.on("ready", () => {
 
 client.on("message", msg => {
   var messaged_channel = msg.channel.id;
+  var active_channel;
   if (messaged_channel == serviceFree_channel){
-      var active_channel = serviceFree_channel;
+      active_channel = serviceFree_channel;
   } else if (messaged_channel == servicePaid_channel){
-      var active_channel = servicePaid_channel;
-  } else{
+      active_channel = servicePaid_channel;
+  } else {
       return;
   };
   var link = msg.content;
