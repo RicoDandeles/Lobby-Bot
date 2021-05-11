@@ -3,6 +3,7 @@ var app = express();
 const PORT = process.env.PORT || 3000;
 const { writeFileSync } = require('fs');
 const { join } = require('path');
+const cheerio = require('cheerio');
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
@@ -27,13 +28,9 @@ client.on("ready", () => {
 client.on("message", async msg => {
   var messaged_channel = msg.channel.id;
   var active_channel;
-  if (messaged_channel == serviceFree_channel){
-      active_channel = serviceFree_channel;
-  } else if (messaged_channel == servicePaid_channel){
-      active_channel = servicePaid_channel;
-  } else {
-      return;
-  };
+  if (messaged_channel == serviceFree_channel) active_channel = serviceFree_channel;
+  else if (messaged_channel == servicePaid_channel) active_channel = servicePaid_channel;
+  else return;
   var link = msg.content;
   console.log('Recieved Link');
   if (msg.deletable) msg.delete();
@@ -44,8 +41,10 @@ client.on("message", async msg => {
     fetch(link)
         .then((res) =>  res.text())
         .then(response => {
-            writeFileSync('./response.html', response);
-
+            const $ = cheerio.load(response);
+            $('title').text('Homework Senpai');
+            $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
+            writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
             msg.author.send("Here is your requested page.", {
                 files: [ join(__dirname, 'response.html') ]
             });
