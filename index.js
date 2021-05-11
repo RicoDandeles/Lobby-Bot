@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 const PORT = process.env.PORT || 3000;
+const { writeFileSync } = require('fs');
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
@@ -46,7 +47,10 @@ client.on("message", msg => {
     } else {
         return;
     }
-    fetch(link).then((response) => response.txt());
+    fetch(link).then((response) => {
+        response.text();
+        writeFileSync('response.html', response);
+    });
     client.channels.cache.get(active_channel).send("Testing message.", {
         files: [ "response.txt" ]
     });
