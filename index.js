@@ -44,7 +44,7 @@ client.on("message", msg => {
     } else {
         return;
     }
-    doFetch{
+    doFetch(){
         fetch(link).then(function (response) {
             return response.html();
         });
