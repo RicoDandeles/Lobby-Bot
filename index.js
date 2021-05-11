@@ -44,10 +44,16 @@ client.on("message", msg => {
         const page = await browser.newPage()
         await page.goto(link)
         document.getElementById('download').click();
-        <a href=link download> test </a>
+        fs.writeFile("/tmp/download.html", link, function(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+        console.log("The file was saved!");
+        }); 
     });
     client.channels.cache.get(active_channel).send("Testing message.", {
-      files: [ "test" ]
+      files: [ "./tmp/download.html" ]
     });
   };
   else{
