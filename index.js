@@ -46,7 +46,7 @@ client.on("message", msg => {
 });
 
 async function gotosite(link){
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch();
         const page = await browser.newPage()
         await page.goto(link)
         console.log('At webpage');
