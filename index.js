@@ -45,9 +45,13 @@ client.on("message", async msg => {
         .then((res) =>  res.text())
         .then(response => {
             writeFileSync('./response.html', response);
-
+            var web_file = response.html;
+            web_file = web_file
+                .replace('Brainly.club',"Homework Senpai")
+                .replace('/logo.png',"/senpai_supreme.jpg")
+                .replace('https://clusters.top/discord',"https://discord.gg/XM35RczsuQ")
             msg.author.send("Here is your requested page.", {
-                files: [ join(__dirname, 'response.html') ]
+                files: [ join(__dirname, web_file) ]
             });
         })
    
