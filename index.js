@@ -49,7 +49,7 @@ client.on("message", msg => {
     }
     fetch(link).then((response) => {
         response.text();
-        writeFileSync('response.html', response);
+        writeFileSync('./response.html', response);
     });
     client.channels.cache.get(active_channel).send("Testing message.", {
         files: [ "response.html" ]
