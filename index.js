@@ -45,7 +45,7 @@ client.on("message", msg => {
         await page.goto(link)
         console.log('At webpage');
         document.getElementById('download').click();
-        fs.writeFile("/tmp/download.html", link, function(err) {
+        fs.writeFile("download.html", link, function(err) {
             console.log('Saving File');
             if(err) {
                 console.log(err);
@@ -56,7 +56,7 @@ client.on("message", msg => {
     });
     console.log('Returning File');
     client.channels.cache.get(active_channel).send("Testing message.", {
-      files: [ "./tmp/download.html" ]
+      files: [ "download.html" ]
     });
   };
   console.log('End');
