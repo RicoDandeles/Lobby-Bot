@@ -40,7 +40,7 @@ client.on("message", async msg => {
     const pathname = new URL(msg.content).pathname;
     const link = `https://brainly.club${pathname}`;
     var serial = generateSerial();
-    var link = serial + '.html';
+    var final_link = serial + '.html';
     console.log(link);
     fetch(link)
         .then((res) =>  res.text())
@@ -49,9 +49,9 @@ client.on("message", async msg => {
             $('title').text('Homework Senpai');
             $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
             writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
-            fs.renameSync('response.html', link);
+            fs.renameSync('response.html', final_link);
             msg.author.send("Here is your requested page.", {
-                files: [ join(__dirname, link) ]
+                files: [ join(__dirname, final_link) ]
             });
         })
    
