@@ -11,7 +11,6 @@ const client = new Discord.Client();
 const puppeteer = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
-const browser = await puppeteer.launch();
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
@@ -42,6 +41,7 @@ client.on("message", msg => {
     console.log('Link is valid');
     link = link.replace("com", "club");
     puppeteer.launch({ headless: true }).then(async browser => {
+        const browser = await puppeteer.launch();
         const page = await browser.newPage()
         await page.goto(link)
         console.log('At webpage');
