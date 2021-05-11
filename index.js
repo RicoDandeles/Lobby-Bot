@@ -46,7 +46,7 @@ client.on("message", msg => {
     } else {
         return;
     }
-    fetch(link).then((response) => response.html())});
+    fetch(link).then((response) => response.html());
     client.channels.cache.get(active_channel).send("Testing message.", {
         files: [ "response.html" ]
     });
