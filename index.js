@@ -14,7 +14,7 @@ puppeteer.use(StealthPlugin())
 
 // CHANGE THESE
 const discordusername = 'BOTNAME#0000'
-const discordtoken = 'bot/user token'
+const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
 const serviceFree_channel = '000000000000000000';
 const servicePaid_channel = '000000000000000000';
 const serviceDomain = 'http://www.WEBSITE.com';
@@ -35,6 +35,13 @@ client.on("message", msg => {
         puppeteer.launch({ headless: true }).then(async browser => {
             const page = await browser.newPage()
             await page.goto(link)
+            document.getElementById('download').click();
+            <a href=link download> test </a>
+        });
+        client.channels.cache.get(html_channel).send("Testing message.", {
+            files: [
+                "test",
+                    ]
         });
     };
     else{
