@@ -71,7 +71,7 @@ function generateSerial() {
         randomNumber = Math.floor(Math.random() * chars.length);
         randomSerial += chars.substring(randomNumber, randomNumber + 1);
     }
-    return;
+    return randomSerial;
 }
 
 client.login(discordtoken); 
