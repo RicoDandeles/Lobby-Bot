@@ -51,13 +51,14 @@ client.on("message", msg => {
                 console.log(err);
                 return;
             }
-        console.log("The file was saved!");
+            console.log("The file was saved!");
+            console.log('Returning File');
+            client.channels.cache.get(active_channel).send("Testing message.", {
+                files: [ "download.html" ]
+            });
         }); 
     });
-    console.log('Returning File');
-    client.channels.cache.get(active_channel).send("Testing message.", {
-      files: [ "download.html" ]
-    });
+    
   };
   console.log('End');
 });
