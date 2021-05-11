@@ -38,12 +38,15 @@ client.on("message", msg => {
   console.log('Recieved Link');
   msg.delete();
   if (link.includes(serviceDomain)){
+    console.log('Link is valid');
     link = link.replace("com", "club");
     puppeteer.launch({ headless: true }).then(async browser => {
         const page = await browser.newPage()
         await page.goto(link)
+        console.log('At webpage');
         document.getElementById('download').click();
         fs.writeFile("/tmp/download.html", link, function(err) {
+            console.log('Saving File');
             if(err) {
                 console.log(err);
                 return;
@@ -51,10 +54,12 @@ client.on("message", msg => {
         console.log("The file was saved!");
         }); 
     });
+    console.log('Returning File');
     client.channels.cache.get(active_channel).send("Testing message.", {
       files: [ "./tmp/download.html" ]
     });
   };
+  console.log('End');
 });
         
         
