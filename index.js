@@ -42,7 +42,7 @@ client.on("message", async msg => {
     const link = `https://brainly.club${pathname}`;
     var serial = generateSerial();
     var final_link = serial + '.html';
-    console.log(link);
+    console.log(final_link);
     fetch(link)
         .then((res) =>  res.text())
         .then(response => {
