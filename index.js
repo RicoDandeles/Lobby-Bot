@@ -54,9 +54,9 @@ client.on("message", msg => {
 });
 
 async function gotosite(){
-    fetch(link)
-        .then(website => website.html())
-        .then(console.log('File reached'));
+    fetch(link).then(function (response) {
+        return response.html();
+    }
 }
         
 
