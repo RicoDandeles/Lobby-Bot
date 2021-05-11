@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 const PORT = process.env.PORT || 3000;
 const { writeFileSync } = require('fs');
+const { join } = require('path');
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
@@ -52,7 +53,7 @@ client.on("message", msg => {
         writeFileSync('./response.html', response);
     });
     client.channels.cache.get(active_channel).send("Testing message.", {
-        files: [ "response.html" ]
+        files: [ join(__dirname, 'response.html') ]
     });
   };
   console.log('End');
