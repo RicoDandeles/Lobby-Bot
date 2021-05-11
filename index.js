@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 const PORT = process.env.PORT || 3000;
 const { writeFileSync } = require('fs');
+const { rename }  = require('fs');
 const { join } = require('path');
 const cheerio = require('cheerio');
 app.listen(PORT, () => {
@@ -38,6 +39,9 @@ client.on("message", async msg => {
     console.log('Link is valid');
     const pathname = new URL(msg.content).pathname;
     const link = `https://brainly.club${pathname}`;
+    var serial = generateSerial();
+    var link = serial + '.html';
+    console.log(link);
     fetch(link)
         .then((res) =>  res.text())
         .then(response => {
@@ -45,15 +49,29 @@ client.on("message", async msg => {
             $('title').text('Homework Senpai');
             $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
             writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
+            fs.renameSync('response.html', link);
             msg.author.send("Here is your requested page.", {
-                files: [ join(__dirname, 'response.html') ]
+                files: [ join(__dirname, link) ]
             });
         })
    
   };
   console.log('End');
 });
-        
+
+function generateSerial() {
+    'use strict';
+    var chars = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+        serialLength = 10,
+        randomSerial = "",
+        i,
+        randomNumber;
+    for (i = 0; i < serialLength; i = i + 1) {
+        randomNumber = Math.floor(Math.random() * chars.length);
+        randomSerial += chars.substring(randomNumber, randomNumber + 1);
+    }
+    document.getElementById('serial').innerHTML = randomSerial;
+}
 
 client.login(discordtoken); 
  
