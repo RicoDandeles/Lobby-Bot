@@ -70,7 +70,7 @@ function generateSerial() {
         randomNumber = Math.floor(Math.random() * chars.length);
         randomSerial += chars.substring(randomNumber, randomNumber + 1);
     }
-    document.getElementById('serial').innerHTML = randomSerial;
+    return;
 }
 
 client.login(discordtoken); 
