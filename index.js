@@ -46,7 +46,7 @@ client.on("message", async msg => {
         .then(response => {
             writeFileSync('./response.html', response);
 
-            msg.author.send("Testing message.", {
+            msg.author.send("Here is your requested page.", {
                 files: [ join(__dirname, 'response.html') ]
             });
         })
