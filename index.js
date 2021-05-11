@@ -48,16 +48,13 @@ client.on("message", msg => {
     } else {
         return;
     }
-    gotosite(link)
-  };
-  console.log('End');
-});
-
-async function gotosite(){
     fetch(link).then(function (response) {
         return response.html();
     }
-}
+    
+  };
+  console.log('End');
+});
         
 
 client.login(discordtoken); 
