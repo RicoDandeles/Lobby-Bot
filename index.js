@@ -55,9 +55,6 @@ client.on("message", msg => {
       files: [ "./tmp/download.html" ]
     });
   };
-  else{
-    return;
-  };
 });
         
         
