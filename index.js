@@ -8,6 +8,8 @@ app.listen(PORT, () => {
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
+const fetch = require("node-fetch");
+
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
 const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
