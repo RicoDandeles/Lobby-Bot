@@ -17,7 +17,7 @@ const discordusername = 'Brainly Bot#5119'
 const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
 const serviceFree_channel = '840515343054667807';
 const servicePaid_channel = '841544000422281217';
-const serviceDomain = 'http://www.brainly.com';
+const serviceDomain = 'brainly.com';
 //
 
 client.on("ready", () => {
