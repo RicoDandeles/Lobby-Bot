@@ -24,7 +24,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("message", msg => {
+client.on("message", async msg => {
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == serviceFree_channel){
@@ -36,25 +36,21 @@ client.on("message", msg => {
   };
   var link = msg.content;
   console.log('Recieved Link');
-  msg.delete();
+  if (msg.deletable) msg.delete();
   if (link.includes(serviceDomain)){
     console.log('Link is valid');
-    if (link.includes(".com")){
-        link = link.replace("com", "club");
-    } else if (link.includes(".ru")){
-        link = link.replace("ru", "club");
-    } else if (link.includes(".in")){
-        link = link.replace("in", "club");
-    } else {
-        return;
-    }
-    fetch(link).then((response) => {
-        response.text();
-        writeFileSync('./response.html', response);
-    });
-    client.channels.cache.get(active_channel).send("Testing message.", {
-        files: [ join(__dirname, 'response.html') ]
-    });
+    const pathname = new URL(msg.content).pathname;
+    const link = `https://brainly.club${pathname}`;
+    fetch(link)
+        .then((res) =>  res.text())
+        .then(response => {
+            writeFileSync('./response.html', response);
+
+            msg.author.send("Testing message.", {
+                files: [ join(__dirname, 'response.html') ]
+            });
+        })
+   
   };
   console.log('End');
 });
