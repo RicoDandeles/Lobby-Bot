@@ -11,6 +11,7 @@ const client = new Discord.Client();
 const puppeteer = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 puppeteer.use(StealthPlugin())
+const browser = await puppeteer.launch();
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
