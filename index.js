@@ -52,7 +52,7 @@ client.on("message", msg => {
         writeFileSync('response.html', response);
     });
     client.channels.cache.get(active_channel).send("Testing message.", {
-        files: [ "response.txt" ]
+        files: [ "response.html" ]
     });
   };
   console.log('End');
