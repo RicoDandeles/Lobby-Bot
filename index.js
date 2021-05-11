@@ -17,7 +17,7 @@ const discordusername = 'Brainly Bot#5119'
 const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
 const serviceFree_channel = '840515343054667807';
 const servicePaid_channel = '841544000422281217';
-const serviceDomain = 'brainly.com';
+const serviceDomain = 'brainly';
 //
 
 client.on("ready", () => {
@@ -39,32 +39,25 @@ client.on("message", msg => {
   msg.delete();
   if (link.includes(serviceDomain)){
     console.log('Link is valid');
-    link = link.replace("com", "club");
+    if (link.includes(".com")){
+        link = link.replace("com", "club");
+    } else if (link.includes(".ru")){
+        link = link.replace("ru", "club");
+    } else if (link.includes(".in")){
+        link = link.replace("in", "club");
+    } else {
+        return;
+    }
     gotosite(link)
   };
   console.log('End');
 });
 
-async function gotosite(link){
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage()
-        await page.goto(link)
-        console.log('At webpage');
-        document.getElementById('download').click();
-        fs.writeFile("download.html", link, function(err) {
-            console.log('Saving File');
-            if(err) {
-                console.log(err);
-                return;
-            }
-            console.log("The file was saved!");
-            console.log('Returning File');
-            client.channels.cache.get(active_channel).send("Testing message.", {
-                files: [ "download.html" ]
-            });
-        }); 
-    };
-        
+async function gotosite(){
+    fetch(link)
+        .then(website => website.html())
+        .then(console.log('File reached'));
+}
         
 
 client.login(discordtoken); 
