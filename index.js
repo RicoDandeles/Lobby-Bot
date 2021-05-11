@@ -8,10 +8,6 @@ app.listen(PORT, () => {
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-const puppeteer = require('puppeteer-extra')
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-puppeteer.use(StealthPlugin())
-
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
 const discordtoken = 'ODQxNTIwMTkyMDg5NjIwNTQw.YJn8wA.u1qor9b71EDhKujXW5zSnc1b9Eg'
@@ -48,9 +44,11 @@ client.on("message", msg => {
     } else {
         return;
     }
-    fetch(link).then(function (response) {
-        return response.html();
-    });
+    doFetch{
+        fetch(link).then(function (response) {
+            return response.html();
+        });
+    }
     client.channels.cache.get(active_channel).send("Testing message.", {
       files: [ "response.html" ]
     });
