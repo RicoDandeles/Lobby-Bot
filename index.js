@@ -81,7 +81,7 @@ function generateSerial() {
     return randomSerial;
 };
 async function githubUpload(filename) {
-    const content = fs.readFileSync('file/to/path', 'utf-8');
+    const content = fs.readFileSync(filename, 'utf-8');
     const fileOutput = Base64.encode(content);
 
     const { data } = await octokit.repos.createOrUpdateFileContents({
