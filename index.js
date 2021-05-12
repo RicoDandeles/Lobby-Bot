@@ -56,6 +56,7 @@ client.on("message", async msg => {
                 files: [ join(__dirname, final_link) ]
             }); */
             githubUpload(final_link);
+            console.log('Process Finished');
         })
    
   };
@@ -77,13 +78,13 @@ function generateSerial() {
 };
 async function githubUpload(filename) {
     await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-    owner: 'RicoDandeles',
-    repo: 'homework-senpai',
-    path: '/gh-pages/files/' + filename,
-    message: 'message',
-    content: 'content'
-})
-    
+        owner: 'RicoDandeles',
+        repo: 'homework-senpai',
+        path: '/gh-pages/files/' + filename,
+        message: 'message',
+        content: 'content'
+    })
+    console.log('File Uploaded Successfully');
 };
 client.login(discordtoken); 
  
