@@ -82,7 +82,8 @@ function generateSerial() {
         randomSerial += chars.substring(randomNumber, randomNumber + 1);
     }
     return randomSerial;
-};
+}
+
 async function githubUpload(filename) {
     const content = fs.readFileSync(filename, 'utf-8');
     const fileOutput = Base64.encode(content);
@@ -104,4 +105,3 @@ async function githubUpload(filename) {
     });
 };
 client.login(discordtoken); 
- 
