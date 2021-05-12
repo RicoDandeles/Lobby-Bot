@@ -15,6 +15,7 @@ const client = new Discord.Client();
 
 const fetch = require("node-fetch");
 const { Octokit } = require("@octokit/core");
+const octokit = require("@octokit/core");
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
