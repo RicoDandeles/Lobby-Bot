@@ -75,7 +75,7 @@ function generateSerial() {
     }
     return randomSerial;
 };
-function githubUpload(filename) {
+async function githubUpload(filename) {
     await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     owner: 'RicoDandeles',
     repo: 'homework-senpai',
