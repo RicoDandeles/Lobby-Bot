@@ -89,7 +89,7 @@ async function githubUpload(filename) {
         repo: 'homework-senpai',
         path: 'homework-senpai/files/' + filename,
         message: 'Added ' + filename,
-        content: contentEncoded,
+        content: fileOutput,
         committer: {
             name: `RicoDandeles`,
             email: 'rtiklegaming@gmail.com',
