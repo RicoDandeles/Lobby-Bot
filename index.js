@@ -14,6 +14,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const fetch = require("node-fetch");
+const { Octokit } = require("@octokit/core");
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
@@ -41,7 +42,7 @@ client.on("message", async msg => {
     const pathname = new URL(msg.content).pathname;
     const link = `https://brainly.club${pathname}`;
     var serial = generateSerial();
-    console.log(serial);
+    console.log('Serial: ' + serial);
     var final_link = serial + '.html';
     fetch(link)
         .then((res) =>  res.text())
@@ -51,9 +52,10 @@ client.on("message", async msg => {
             $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
             writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
             fs.renameSync('response.html', final_link);
-            msg.author.send("Here is your requested page.", {
+            /* msg.author.send("Here is your requested page.", {
                 files: [ join(__dirname, final_link) ]
-            });
+            }); */
+            githubUpload(final_link);
         })
    
   };
@@ -72,7 +74,16 @@ function generateSerial() {
         randomSerial += chars.substring(randomNumber, randomNumber + 1);
     }
     return randomSerial;
-}
-
+};
+function githubUpload(filename) {
+    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    owner: 'RicoDandeles',
+    repo: 'homework-senpai',
+    path: '/gh-pages/files/' + filename,
+    message: 'message',
+    content: 'content'
+})
+    
+};
 client.login(discordtoken); 
  
