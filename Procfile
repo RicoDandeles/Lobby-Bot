@@ -1,2 +1,2 @@
 $ cat Procfile
-web: npm start -p $PORT
+web: npm start
