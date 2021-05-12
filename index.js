@@ -9,11 +9,16 @@ const cheerio = require('cheerio');
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
 });
-
+ 
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const fetch = require("node-fetch");
+const { Octokit } = require('@octokit/rest');
+const { Base64 } = require('js-base64');
+const octokit = new Octokit({
+  auth: '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',
+});
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
@@ -41,7 +46,7 @@ client.on("message", async msg => {
     const pathname = new URL(msg.content).pathname;
     const link = `https://brainly.club${pathname}`;
     var serial = generateSerial();
-    console.log(serial);
+    console.log('Serial: ' + serial);
     var final_link = serial + '.html';
     fetch(link)
         .then((res) =>  res.text())
@@ -51,11 +56,16 @@ client.on("message", async msg => {
             $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
             writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
             fs.renameSync('response.html', final_link);
-            msg.author.send("Here is your requested page.", {
-                files: [ join(__dirname, final_link) ]
-            });
+            githubUpload(final_link);
+            console.log('Process Finished');
+            msg.author.send({embed: {
+                color: 3447003,
+                title: "Here is your requested page.",
+                fields: [
+                    { name: "Link:", value: "https://ricodandeles.github.io/homework-senpai/homework-senpai/files/" + final_link, inline: true},
+                ]
+            }});
         })
-   
   };
   console.log('End');
 });
@@ -74,4 +84,24 @@ function generateSerial() {
     return randomSerial;
 }
 
+async function githubUpload(filename) {
+    const content = fs.readFileSync(filename, 'utf-8');
+    const fileOutput = Base64.encode(content);
+
+    const { data } = await octokit.repos.createOrUpdateFileContents({
+        owner: 'RicoDandeles',
+        repo: 'homework-senpai',
+        path: 'homework-senpai/files/' + filename,
+        message: 'Added ' + filename,
+        content: fileOutput,
+        committer: {
+            name: `RicoDandeles`,
+            email: 'rtiklegaming@gmail.com',
+        },
+        author: {
+            name: 'RicoDandeles',
+            email: 'rtiklegaming@gmail.com',
+        },
+    });
+};
 client.login(discordtoken); 
