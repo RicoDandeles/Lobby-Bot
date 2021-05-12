@@ -8,6 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@octokit/rest": "^18.5.3",
     "cheerio": "^1.0.0-rc.9",
     "discord.js": "^12.5.2",
     "express": "^4.17.1",
@@ -15,10 +16,9 @@
     "fastify-formbody": "^5.0.0",
     "fastify-static": "^4.0.0",
     "handlebars": "^4.7.7",
+    "js-base64": "^3.6.0",
     "node-fetch": "^2.6.1",
-    "point-of-view": "^4.14.0",
-    "@octokit/rest": "^18.5.2",
-    "js-base64": "^3.6.0"
+    "point-of-view": "^4.14.0"
   },
   "repository": {
     "url": "https://github.com/RicoDandeles/Brainly-Bot"
