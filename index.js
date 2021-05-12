@@ -14,8 +14,11 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 const fetch = require("node-fetch");
-const { Octokit } = require("@octokit/core");
-const octokit = require("@octokit/core");
+const { Octokit } = require('@octokit/rest');
+const { Base64 } = require('js-base64');
+const octokit = new Octokit({
+  auth: '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',
+});
 
 // CHANGE THESE
 const discordusername = 'Brainly Bot#5119'
@@ -78,14 +81,24 @@ function generateSerial() {
     return randomSerial;
 };
 async function githubUpload(filename) {
-    await octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    const content = fs.readFileSync('file/to/path', 'utf-8');
+    const fileOutput = Base64.encode(content);
+
+    const { data } = await octokit.repos.createOrUpdateFileContents({
         owner: 'RicoDandeles',
         repo: 'homework-senpai',
-        path: '/gh-pages/files/' + filename,
-        message: 'message',
-        content: 'content'
-    })
-    console.log('File Uploaded Successfully');
+        path: filename,
+        message: 'Added ' + filename,
+        content: contentEncoded,
+        committer: {
+            name: `RicoDandeles`,
+            email: 'rtiklegaming@gmail.com',
+        },
+        author: {
+            name: 'RicoDandeles',
+            email: 'rtiklegaming@gmail.com',
+        },
+    });
 };
 client.login(discordtoken); 
  
