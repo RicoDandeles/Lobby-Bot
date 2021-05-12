@@ -56,13 +56,16 @@ client.on("message", async msg => {
             $('alert-link').attr('href', 'https://discord.gg/XM35RczsuQ');
             writeFileSync('./response.html', $.html().toString().replace('/logo.png', 'https://i.imgur.com/9tL2f2C.jpg'));
             fs.renameSync('response.html', final_link);
-            /* msg.author.send("Here is your requested page.", {
-                files: [ join(__dirname, final_link) ]
-            }); */
             githubUpload(final_link);
             console.log('Process Finished');
+            msg.author.send({embed: {
+                color: 3447003,
+                title: "Here is your requested page.",
+                fields: [
+                    { name: "Link:", value: "https://ricodandeles.github.io/homework-senpai/homework-senpai/files/" + final_link, inline: true},
+                ]
+            }});
         })
-   
   };
   console.log('End');
 });
