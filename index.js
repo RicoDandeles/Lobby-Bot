@@ -7,7 +7,7 @@ const cheerio = require('cheerio');
 const domain = process.env.NODE_ENV == 'production' ? 'https://botswana-brainly.herokuapp.com' : `http://localhost:${PORT}`;
 const { join } = require('path');
 const ms = require('ms');
-
+ 
 app.use(express.json());
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'jade');
