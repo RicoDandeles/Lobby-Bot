@@ -98,5 +98,4 @@ function generateSerial() {
     return randomSerial;
 };
 
-
 client.login(discordtoken);
