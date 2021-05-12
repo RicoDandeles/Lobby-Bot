@@ -87,7 +87,7 @@ async function githubUpload(filename) {
     const { data } = await octokit.repos.createOrUpdateFileContents({
         owner: 'RicoDandeles',
         repo: 'homework-senpai',
-        path: filename,
+        path: 'homework-senpai/files/' + filename,
         message: 'Added ' + filename,
         content: contentEncoded,
         committer: {
