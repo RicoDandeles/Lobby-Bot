@@ -30,20 +30,18 @@ const filter = (reaction, user) => {
     return [':white_check_mark:'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
 
-message.awaitReactions(filter)
+message.awaitReactions(filter){
     console.log("Reaction Added");
-    .then(test => {
-        const reaction = collected.first();
-
-        if (reaction.emoji.name === ':white_check_mark: ') {
-            user.roles.add("rules_verification");
-            console.log("Role added to " + user);
-        }
-        else {
-            console.log("No role added to " + user);
-        }
-        console.log(test);
-    });
+    const reaction = collected.first();
+    if (reaction.emoji.name === ':white_check_mark: ') {
+        user.roles.add("rules_verification");
+        console.log("Role added to " + user);
+    }
+    else {
+        console.log("No role added to " + user);
+    }
+    console.log(test);
+}
 
 
 client.login(discordtoken); 
