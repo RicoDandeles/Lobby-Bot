@@ -32,7 +32,7 @@ const filter = (reaction, user) => {
 
 message.awaitReactions(filter)
     console.log("Reaction Added");
-    .then{
+    .then(test => {
         const reaction = collected.first();
 
         if (reaction.emoji.name === ':white_check_mark: ') {
@@ -42,7 +42,8 @@ message.awaitReactions(filter)
         else {
             console.log("No role added to " + user);
         }
-    };
+        console.log(test);
+    });
 
 
 client.login(discordtoken); 
