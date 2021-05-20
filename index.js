@@ -30,6 +30,8 @@ const filter = (reaction, user) => {
     return [':white_check_mark:'].includes(reaction.emoji.name) && user.id === message.author.id;
 };
 
+const message = (844717846800891924);
+
 message.awaitReactions(filter, { max: 1 })
     .then(collected => {
         const reaction = collected.first();
