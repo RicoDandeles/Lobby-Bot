@@ -24,6 +24,7 @@ const command = '+lobby'
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Client ID: `+client.user.id)
 });
 
 client.on("message", async msg => {
@@ -49,7 +50,6 @@ async function createPrivateChannel(serverId, channelName, message) {
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
-    {type: 'role', id: staffRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES, Permissions.FLAGS.MANAGE_CHANNEL]},
   ]);
 }
 
