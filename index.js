@@ -26,7 +26,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async message => {
-  var messaged_channel = msg.channel.id;
+  var messaged_channel = message.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
