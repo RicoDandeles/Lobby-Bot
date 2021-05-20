@@ -25,13 +25,14 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-
-const filter = (reaction, user) => {
-    return [':white_check_mark:'].includes(reaction.emoji.name) && user.id === message.author.id;
-};
-
 const message = (844717846800891924);
 
+client.on('messageReactionAdd', (reaction, user) => {
+    if(reaction.emoji.name === "✅") {
+        console.log(reaction.users);
+    }
+});
+/*
 message.awaitReactions(filter, { max: 1 })
     .then(collected => {
         const reaction = collected.first();
@@ -43,6 +44,6 @@ message.awaitReactions(filter, { max: 1 })
             console.log("No role added to " + user);
         }
     })
-
+*/
 
 client.login(discordtoken); 
