@@ -33,7 +33,7 @@ client.on("message", async msg => {
   else return;
   var input = msg.content;
   if (input.includes(command)){
-    createPrivateChannel(serverId, 'lobby - '+ msg.author.id, msg)
+    createPrivateChannel(serverId, 'lobby - '+ msg.author.name, msg)
   };
 });
 
