@@ -33,7 +33,7 @@ client.on("message", async msg => {
   else return;
   var input = msg.content;
   if (input.includes(command)){
-    createPrivateChannel(serverId, 'lobby1 - '+ generateSerial(), msg)
+    createPrivateChannel(serverId, 'lobby - '+ message.author.id, msg)
   };
 });
 
@@ -46,8 +46,8 @@ async function createPrivateChannel(serverId, channelName, message) {
   const channel = await guild.channels.create(channelName, 'lobby');
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.MANAGE_PERMISSIONS]},
     {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
-    {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.MANAGE_PERMISSIONS]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
 }
