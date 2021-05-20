@@ -26,18 +26,17 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
-  const message = msg;
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  createPrivateChannel(serverId, 'lobby1')
+  createPrivateChannel(serverId, 'lobby1', msg)
 });
 
 
 /** @param {string|number} serverId - a "snowflake" ID you can see in address bar */
 
-async function createPrivateChannel(serverId, channelName) {
+async function createPrivateChannel(serverId, channelName, message) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
   const channel = await guild.channels.create(channelName, 'lobby' + generateSerial());
