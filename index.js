@@ -18,6 +18,7 @@ const client = new Discord.Client();
 const discordusername = 'Lobby Bot#3340'
 const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzlQ'
 const lobby_hub = '844708676182999080'
+const lobby_category = '845071627515592714'
 const serverId = '844644376826085426'
 const command = '+lobby'
 //
@@ -28,9 +29,6 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
-  var currentTime = new Date().getTime();
-  console.log('Current time is ' + currentTime);
-  console.log('Message sent at ' + msg.createdTimestamp);
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
@@ -55,6 +53,7 @@ async function createPrivateChannel(serverId, channelName, message) {
   const everyoneRole = guild.roles.everyone;
   const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby');
+  channel.setParent(lobby_category);
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
