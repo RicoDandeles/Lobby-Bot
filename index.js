@@ -28,6 +28,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
+  console.log('Message sent at ' + msg.createdTimestamp);
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
@@ -40,7 +41,7 @@ client.on("message", async msg => {
     if (input === "") {
         input = 'lobby - ' + msg.author.username;
     };
-    createPrivateChannel(serverId, input, msg)
+    createPrivateChannel(serverId, 'lobby - ' + input, msg)
   };
 });
 
