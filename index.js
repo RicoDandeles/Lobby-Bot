@@ -33,8 +33,14 @@ client.on("message", async msg => {
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
   var input = msg.content;
+  input = input.split(" ").join("")
   if (input.includes(command)){
-    createPrivateChannel(serverId, 'lobby - '+ msg.author.username, msg)
+    input = input.split("+lobby").join("")
+    input = truncate(input, 16);
+    if (input === "") {
+        input = 'lobby - ' + msg.author.username;
+    };
+    createPrivateChannel(serverId, input, msg)
   };
 });
 
@@ -48,7 +54,6 @@ async function createPrivateChannel(serverId, channelName, message) {
   const channel = await guild.channels.create(channelName, 'lobby');
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
-    {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
 }
@@ -66,4 +71,19 @@ function generateSerial() {
     }
     return randomSerial;
 }
+
+function truncate(str, length, ending) {
+    if (length == null) {
+      length = 100;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+
 client.login(discordtoken); 
