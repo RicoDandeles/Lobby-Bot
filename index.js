@@ -43,7 +43,7 @@ client.on("message", async msg => {
 async function createPrivateChannel(serverId, channelName, message) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
-  const staffRole = guild.roles.owner;
+  const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby');
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
