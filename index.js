@@ -28,6 +28,8 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
+  var currentTime = new Date().getTime();
+  console.log('Current time is ' + currentTime);
   console.log('Message sent at ' + msg.createdTimestamp);
   var messaged_channel = msg.channel.id;
   var active_channel;
