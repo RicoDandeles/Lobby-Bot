@@ -33,14 +33,14 @@ client.on("message", async msg => {
   else return;
   var input = msg.content;
   if (input.includes(command)){
-    createPrivateChannel(serverId, 'lobby - '+ message.author.id, msg)
+    createPrivateChannel(serverId, 'lobby - '+ message.author.id)
   };
 });
 
 
 /** @param {string|number} serverId - a "snowflake" ID you can see in address bar */
 
-async function createPrivateChannel(serverId, channelName, message) {
+async function createPrivateChannel(serverId, channelName) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
   const channel = await guild.channels.create(channelName, 'lobby');
