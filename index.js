@@ -11,40 +11,53 @@ app.listen(PORT, () => {
 });
  
 const Discord = require("discord.js");
+const { Client, Permissions } = require('discord.js');
 const client = new Discord.Client();
 
 // CHANGE THESE
-const discordusername = 'Sign-Up Bot#3340'
+const discordusername = 'Lobby Bot#3340'
 const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzlQ'
-const rules_channel = '844707488515620884';
-const application_channel = '844707536514449428';
-const consent_channel = '844707623537999893';
+const lobby_hub = '844708676182999080'
+const serverId = '844644376826085426'
 //
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const message = (844717846800891924);
-
-client.on('messageReactionAdd', (reaction, user) => {
-    console.log(reaction.users);
-    if(reaction.emoji.name == ':white_check_mark:') {
-        console.log(reaction.users);
-    }
+client.on("message", async msg => {
+  var messaged_channel = msg.channel.id;
+  var active_channel;
+  if (messaged_channel == lobby_hub) active_channel = lobby_hub;
+  else return;
+  createPrivateChannel(serverId, 'lobby1')
 });
-/*
-message.awaitReactions(filter, { max: 1 })
-    .then(collected => {
-        const reaction = collected.first();
-        if (reaction.emoji.name === ':white_check_mark:') {
-            user.roles.add("rules_verification");
-            console.log("Role added to " + user);
-        }
-        else {
-            console.log("No role added to " + user);
-        }
-    })
-*/
 
+
+/** @param {string|number} serverId - a "snowflake" ID you can see in address bar */
+
+async function createPrivateChannel(serverId, channelName) {
+  const guild = await client.guilds.fetch(serverId);
+  const everyoneRole = guild.roles.everyone;
+  const channel = await guild.channels.create(channelName, 'lobby' + generateSerial());
+  await channel.overwritePermissions([
+    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+    {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+    {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
+  ]);
+}
+
+function generateSerial() {
+    'use strict';
+    var chars = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+        serialLength = 10,
+        randomSerial = "",
+        i,
+        randomNumber;
+    for (i = 0; i < serialLength; i = i + 1) {
+        randomNumber = Math.floor(Math.random() * chars.length);
+        randomSerial += chars.substring(randomNumber, randomNumber + 1);
+    }
+    return randomSerial;
+}
 client.login(discordtoken); 
