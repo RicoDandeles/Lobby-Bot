@@ -28,6 +28,7 @@ client.on("ready", () => {
 const message = (844717846800891924);
 
 client.on('messageReactionAdd', (reaction, user) => {
+    console.log(reaction.users);
     if(reaction.emoji.name == ':white_check_mark:') {
         console.log(reaction.users);
     }
