@@ -41,7 +41,18 @@ client.on("message", async msg => {
     if (input === "") {
         input = 'lobby - ' + msg.author.username;
     };
-    createPrivateChannel(serverId, 'lobby - ' + input, msg)
+    if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
+        msg.author.send({embed: {
+                color: 15158332,
+                title: "An error has occured.",
+                fields: [
+                    { name: "Error:", value: "You can't host play two games at once! We plan to allow users to host more lobbies in the future. If you believe you are at this page in an error, please contact admins.", inline: true},
+                ]
+        }});
+    }
+    else {
+        createPrivateChannel(serverId, 'lobby - ' + input, msg)
+    }
   };
 });
 
@@ -53,9 +64,7 @@ async function createPrivateChannel(serverId, channelName, message) {
   const everyoneRole = guild.roles.everyone;
   const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby')
-    .then(channel => {
-        channel.setParent(lobby_category);
-    });
+  channel.setParent(lobby_category);
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
