@@ -25,7 +25,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("message", async msg => {
+client.on("message", async message => {
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
