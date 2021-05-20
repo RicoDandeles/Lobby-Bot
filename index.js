@@ -19,6 +19,7 @@ const discordusername = 'Lobby Bot#3340'
 const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzlQ'
 const lobby_hub = '844708676182999080'
 const serverId = '844644376826085426'
+const command = '+lobby'
 //
 
 client.on("ready", () => {
@@ -30,7 +31,9 @@ client.on("message", async msg => {
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  createPrivateChannel(serverId, 'lobby1', msg)
+  if (msg.includes(command)){
+    createPrivateChannel(serverId, 'lobby1 - '+ generateSerial(), msg)
+  };
 });
 
 
@@ -39,7 +42,7 @@ client.on("message", async msg => {
 async function createPrivateChannel(serverId, channelName, message) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
-  const channel = await guild.channels.create(channelName, 'lobby' + generateSerial());
+  const channel = await guild.channels.create(channelName, 'lobby');
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
