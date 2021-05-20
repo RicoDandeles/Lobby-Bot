@@ -45,8 +45,7 @@ async function createPrivateChannel(serverId, channelName, message) {
   const everyoneRole = guild.roles.everyone;
   const channel = await guild.channels.create(channelName, 'lobby');
   await channel.overwritePermissions([
-    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
-    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.MANAGE_PERMISSIONS]},
+    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_PERMISSIONS]},
     {type: 'member', id: client.user.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
