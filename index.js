@@ -31,7 +31,8 @@ client.on("message", async msg => {
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  if (msg.includes(command)){
+  var input = msg.content;
+  if (input.includes(command)){
     createPrivateChannel(serverId, 'lobby1 - '+ generateSerial(), msg)
   };
 });
