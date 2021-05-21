@@ -66,8 +66,7 @@ client.on("message", async msg => {
         }});
     }
     else {
-        console.log('channel id: ' + createPrivateChannel(serverId, channel_name, msg));
-        var channel = client.channels.cache.get(createPrivateChannel(serverId, channel_name, msg));
+        createPrivateChannel(serverId, channel_name, msg));
         msg.author.send({embed: {
                 color: 3066993,
                 title: "Success.",
@@ -75,7 +74,6 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
-        channel.send('+start');
     }
     
   }
@@ -97,13 +95,12 @@ async function createPrivateChannel(serverId, channelName, message) {
   const everyoneRole = guild.roles.everyone;
   const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby')
-  const channelId = channel.id;
-  console.log('channelId: ' + channelId);
   await channel.setParent(lobby_category);
   await channel.overwritePermissions([
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
+  channel.send('+start');
   return;
 }
 
