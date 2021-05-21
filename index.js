@@ -21,6 +21,7 @@ const lobby_hub = '844708676182999080'
 const lobby_category = '845071627515592714'
 const serverId = '844644376826085426'
 const guild = client.channels.cache.get("844644376826085426");
+const role = ('845381979205140490');
 //
 
 client.on("ready", () => {
@@ -31,8 +32,6 @@ client.on("ready", () => {
 client.on("message", async msg => {
   const encode_channel = cipher('iSmokeCrack')
   const decode_channel = decipher('iSmokeCrack')
-  const role = (msg.member.roles.cache.some(role => role.id === '845381979205140490'));
-  const roleID = ('845381979205140490');
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
@@ -73,7 +72,7 @@ client.on("message", async msg => {
                 ]
         }});
         const member = msg.member;
-        member.roles.add(roleID);
+        member.roles.add(role);
     }
     
   }
@@ -84,7 +83,7 @@ client.on("message", async msg => {
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete();
     if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
-        msg.member.removeRole(roleID);
+        msg.member.removeRole(role);
     }
   }
   else return;
