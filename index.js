@@ -78,10 +78,10 @@ client.on("message", async msg => {
     var decoded_room_name = ('lobby-'+decode_channel(input));
     console.log('Decoded Room Code ' + decoded_room_name);
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
-    closed_channel.delete()
+    closed_channel.delete();
     let role = (msg.member.roles.cache.some(role => role.id === '845381979205140490'));
     if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
-        msg.member.removeRole(role)
+        msg.member.removeRole(role);
     }
   }
   else return;
