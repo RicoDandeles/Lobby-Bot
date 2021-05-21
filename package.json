@@ -1,5 +1,5 @@
 {
-  "name": "sign-up-bot",
+  "name": "lobby-bot",
   "version": "0.0.1",
   "description": "A simple Node app.",
   "main": "server.js",
@@ -18,7 +18,7 @@
     "point-of-view": "^4.14.0"
   },
   "repository": {
-    "url": "https://github.com/RicoDandeles/Sign-Up-Bot"
+    "url": "https://github.com/RicoDandeles/Lobby-Bot/"
   },
   "keywords": [
     "node",
