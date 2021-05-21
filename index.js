@@ -45,7 +45,7 @@ client.on("message", async msg => {
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
   var input = msg.content; // filter special characters
-  input = input.split(" ").join("").split("`").join("").split("~").join("").split("\\").join("").split("/").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("")split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("")
+  input = input.split(" ").join("").split("`").join("").split("~").join("").split("/").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("")split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("")
   console.log(input);
   if (input.includes('+lobby')){
     input = input.split("+lobby").join("")
