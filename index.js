@@ -57,7 +57,7 @@ client.on("message", async msg => {
                 color: 15158332,
                 title: "An error has occured.",
                 fields: [
-                    { name: "Error:", value: "You can't host play two games at once! We plan to allow users to host more lobbies in the future. If you believe you are at this page in an error, please contact admins.", inline: true},
+                    { name: "Error:", value: "You can't host two games at once! We plan to allow users to host more lobbies in the future. If you believe you are at this page in an error, please contact admins.", inline: true},
                 ]
         }});
         return;
