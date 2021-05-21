@@ -23,15 +23,6 @@ const serverId = '844644376826085426'
 const guild = client.channels.cache.get("844644376826085426");
 //
 
-/*
-// To create a cipher
-const encode_channel = cipher('iSmokeCrack')
-const decode_channel = decipher('iSmokeCrack')
-//Then cipher any text:
-encode_channel('the secret string')
-myDecipher("7c606d287b6d6b7a6d7c287b7c7a61666f")
-*/
-
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
   console.log(`Client ID: `+client.user.id)
