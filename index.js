@@ -46,11 +46,11 @@ client.on("message", async msg => {
   else return;
   var input = msg.content; // filter special characters
   input = input.split(" ").join("").split("`").join("").split("~").join("").split("/").join("").split("\\").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("").split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("");
-  console.log(input);
   msg.delete();
   if (input.includes('lobby')){
     var sliced_input = input;
     input = truncate(sliced_input,24);
+    console.log(input);
     input = input.split("lobby").join("")
     if (input === "") {
         input = msg.author.username;
