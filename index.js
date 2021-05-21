@@ -31,6 +31,7 @@ client.on("ready", () => {
 client.on("message", async msg => {
   const encode_channel = cipher('iSmokeCrack')
   const decode_channel = decipher('iSmokeCrack')
+  const role = (msg.member.roles.cache.some(role => role.id === '845381979205140490'));
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
@@ -70,6 +71,7 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
+        msg.author.roles.add(role);
     }
     
   }
@@ -79,7 +81,6 @@ client.on("message", async msg => {
     console.log('Decoded Room Code ' + decoded_room_name);
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete();
-    let role = (msg.member.roles.cache.some(role => role.id === '845381979205140490'));
     if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
         msg.member.removeRole(role);
     }
