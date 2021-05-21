@@ -53,6 +53,7 @@ client.on("message", async msg => {
     };
     var channel_name = ('lobby-' + input).split(" ").join("-");
     var encoded_room_name = encode_channel(channel_name);
+    console.log('Encoded Room Code ' + encoded_room_name);
     if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
         msg.author.send({embed: {
                 color: 15158332,
@@ -77,6 +78,7 @@ client.on("message", async msg => {
   else if (input.includes('-close')){
     input = input.split("-close").join("")
     var decoded_room_name = decode_channel(input);
+    console.log('Decoded Room Code ' + decoded_room_name);
     const closed_channel = guild.channels.cache
       .filter((closed_channel) => {
         return closed_channel.name === (decoded_room_name)
