@@ -66,7 +66,7 @@ client.on("message", async msg => {
         }});
     }
     else {
-        createPrivateChannel(serverId, channel_name, msg));
+        createPrivateChannel(serverId, channel_name, msg);
         msg.author.send({embed: {
                 color: 3066993,
                 title: "Success.",
