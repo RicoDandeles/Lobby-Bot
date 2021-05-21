@@ -77,7 +77,12 @@ client.on("message", async msg => {
   else if (input.includes('-close')){
     input = input.split("-close").join("")
     var decoded_room_name = decode_channel(input);
-    // if channel (decoded_room_name) exists -> delete it
+    const closed_channel = guild.channels.cache
+      .filter((closed_channel) => {
+        return closed_channel.name === (decoded_room_name)
+      })
+      .first()
+    closed_channel.delete()
   }
   else return;
 });
