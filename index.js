@@ -49,6 +49,7 @@ client.on("message", async msg => {
   console.log(input);
   msg.delete();
   if (input.includes('lobby')){
+    input = truncate(input,24);
     input = input.split("lobby").join("")
     if (input === "") {
         input = msg.author.username;
