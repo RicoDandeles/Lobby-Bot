@@ -84,7 +84,6 @@ client.on("message", async msg => {
     closed_channel.delete()
   }
   else return;
-  msg.delete();
 });
 
 
