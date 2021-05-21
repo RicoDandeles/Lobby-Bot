@@ -51,12 +51,12 @@ client.on("message", async msg => {
     if (input.length>16){
       input = input.substring(0, 16);
     }
-    console.log(input);
     input = input.split("lobby").join("")
     if (input === "") {
         input = msg.author.username;
     };
     var channel_name = ("lobby-"+input).split(" ").join("-");
+    console.log('Room Name: ' + channel_name);
     var channel_nameV2 = channel_name.split("lobby-").join("").split(" ").join("-");
     var encoded_room_name = encode_channel(channel_nameV2);
     console.log('Encoded Room Code ' + encoded_room_name);
