@@ -45,7 +45,7 @@ client.on("message", async msg => {
     }
     input = input.split("lobby").join("")
     if (input === "") {
-        input = msg.author.username;
+        input = (msg.author.username).toLowerCase();
     };
     var channel_name = ("lobby-"+input).split(" ").join("-");
     console.log('Room Name: ' + channel_name);
