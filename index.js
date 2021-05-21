@@ -71,7 +71,7 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
-        const member = msg.member;
+        var member = msg.member;
         member.roles.add(role);
     }
     
@@ -83,7 +83,8 @@ client.on("message", async msg => {
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete();
     if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
-        msg.member.removeRole(role);
+        var member = msg.member;
+        member.roles.remove(role);
     }
   }
   else return;
