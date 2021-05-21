@@ -66,7 +66,7 @@ client.on("message", async msg => {
         }});
     }
     else {
-        var channelId = createPrivateChannel(serverId, channel_name, msg)
+        var channel = client.channels.cache.get(createPrivateChannel(serverId, channel_name, msg));
         msg.author.send({embed: {
                 color: 3066993,
                 title: "Success.",
@@ -74,7 +74,7 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
-        channelId.send('+start');
+        channel.send('+start');
     }
     
   }
