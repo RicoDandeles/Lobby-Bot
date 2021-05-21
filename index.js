@@ -54,10 +54,9 @@ client.on("message", async msg => {
     if (input === "") {
         input = msg.author.username;
     };
-    var channel_name = ('lobby-'+input).split(" ").join("-");
-    var channel_nameV2 = channel_name.split("lobby-").join("");
-    var encoded_room_name = encode_channel(channel_name);
-    var encoded_room_nameV2 = encode_channel(channel_nameV2);
+    var channel_name = ("lobby-"+input).split(" ").join("-");
+    var channel_nameV2 = channel_name.split("lobby-").join("").split(" ").join("-");
+    var encoded_room_name = encode_channel(channel_nameV2);
     console.log('Encoded Room Code ' + encoded_room_name);
     if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
         msg.author.send({embed: {
@@ -74,7 +73,7 @@ client.on("message", async msg => {
                 color: 3066993,
                 title: "Success.",
                 fields: [
-                    { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_nameV2 +"`.", inline: true},
+                    { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
     }
