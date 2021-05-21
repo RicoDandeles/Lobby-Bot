@@ -48,8 +48,9 @@ client.on("message", async msg => {
   input = input.split(" ").join("").split("`").join("").split("~").join("").split("/").join("").split("\\").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("").split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("");
   msg.delete();
   if (input.includes('lobby')){
-    var sliced_input = input;
-    input = truncate(sliced_input,24);
+    if (input.length>16){
+      input = input.substring(0, 16);
+    }
     console.log(input);
     input = input.split("lobby").join("")
     if (input === "") {
