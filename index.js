@@ -80,7 +80,7 @@ client.on("message", async msg => {
     input = input.split("-close").join("")
     var decoded_room_name = decode_channel(input);
     console.log('Decoded Room Code ' + decoded_room_name);
-    const closed_channel = msg.guild.channels.find(r => r.name === `${decoded_room_name}`);
+    const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete()
   }
   else return;
