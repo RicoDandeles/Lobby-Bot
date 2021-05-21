@@ -44,8 +44,8 @@ client.on("message", async msg => {
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  var input = msg.content; // filter ' " ? ! , . < > ( ) { } [ ]
-  input = input.split(" ").join("")..split("'").join("").split("\"").join("")split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("")
+  var input = msg.content; // filter special characters
+  input = input.split(" ").join("").split("`").join("").split("~").join("").split("\\").join("").split("/").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("")split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("")
   console.log(input);
   if (input.includes('+lobby')){
     input = input.split("+lobby").join("")
@@ -66,7 +66,7 @@ client.on("message", async msg => {
         }});
     }
     else {
-        createPrivateChannel(serverId, channel_name, msg)
+        var channelId = createPrivateChannel(serverId, channel_name, msg)
         msg.author.send({embed: {
                 color: 3066993,
                 title: "Success.",
@@ -74,6 +74,7 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
+        channelId.send('+start');
     }
     
   }
@@ -100,7 +101,7 @@ async function createPrivateChannel(serverId, channelName, message) {
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
-  return 
+  return channel.id;
 }
 
 function generateSerial() {
