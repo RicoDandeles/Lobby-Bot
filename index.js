@@ -45,7 +45,8 @@ client.on("message", async msg => {
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
   var input = msg.content;
-  input = input.split(" ").join("")
+  input = input.split(" ").split("!").split(",").split(".").split("<").split(">").split("(").split(")").split("[").split("]").join("")
+  console.log(input);
   if (input.includes('+lobby')){
     input = input.split("+lobby").join("")
     input = truncate(input, 16);
