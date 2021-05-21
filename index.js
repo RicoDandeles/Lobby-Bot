@@ -20,8 +20,16 @@ const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzl
 const lobby_hub = '844708676182999080'
 const lobby_category = '845071627515592714'
 const serverId = '844644376826085426'
-const command = '+lobby'
 //
+
+/*
+// To create a cipher
+const encode_channel = cipher('iSmokeCrack')
+const decode_channel = decipher('iSmokeCrack')
+//Then cipher any text:
+encode_channel('the secret string')
+myDecipher("7c606d287b6d6b7a6d7c287b7c7a61666f")
+*/
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -29,18 +37,22 @@ client.on("ready", () => {
 });
 
 client.on("message", async msg => {
+  const encode_channel = cipher('iSmokeCrack')
+  const decode_channel = decipher('iSmokeCrack')
   var messaged_channel = msg.channel.id;
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
   var input = msg.content;
   input = input.split(" ").join("")
-  if (input.includes(command)){
+  if (input.includes('+lobby')){
     input = input.split("+lobby").join("")
     input = truncate(input, 16);
     if (input === "") {
         input = 'lobby - ' + msg.author.username;
     };
+    var channel_name = ('lobby-' + input).split(" ").join("-");
+    var encoded_room_name = encode_channel(channel_name);
     if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
         msg.author.send({embed: {
                 color: 15158332,
@@ -51,9 +63,23 @@ client.on("message", async msg => {
         }});
     }
     else {
-        createPrivateChannel(serverId, 'lobby - ' + input, msg)
+        createPrivateChannel(serverId, channel_name + input, msg)
+        msg.author.send({embed: {
+                color: 3066993,
+                title: "Success.",
+                fields: [
+                    { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
+                ]
+        }});
     }
-  };
+    
+  }
+  else if (input.includes('-close')){
+    input = input.split("-close").join("")
+    var decoded_room_name = decode_channel(input);
+    // if channel (decoded_room_name) exists -> delete it
+  }
+  else return;
 });
 
 
@@ -69,6 +95,7 @@ async function createPrivateChannel(serverId, channelName, message) {
     {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
+  return 
 }
 
 function generateSerial() {
@@ -98,5 +125,27 @@ function truncate(str, length, ending) {
       return str;
     }
   };
+
+const cipher = salt => {
+    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+    const byteHex = n => ("0" + Number(n).toString(16)).substr(-2);
+    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+
+    return text => text.split('')
+        .map(textToChars)
+        .map(applySaltToChar)
+        .map(byteHex)
+        .join('');
+}
+
+const decipher = salt => {
+    const textToChars = text => text.split('').map(c => c.charCodeAt(0));
+    const applySaltToChar = code => textToChars(salt).reduce((a,b) => a ^ b, code);
+    return encoded => encoded.match(/.{1,2}/g)
+        .map(hex => parseInt(hex, 16))
+        .map(applySaltToChar)
+        .map(charCode => String.fromCharCode(charCode))
+        .join('');
+}
 
 client.login(discordtoken); 
