@@ -50,7 +50,7 @@ client.on("message", async msg => {
   msg.delete();
   if (input.includes('lobby')){
     input = input.split("lobby").join("")
-    input = truncate(input, 16);
+    input = truncate(input, 12);
     if (input === "") {
         input = msg.author.username;
     };
