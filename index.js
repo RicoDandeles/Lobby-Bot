@@ -55,7 +55,8 @@ client.on("message", async msg => {
         input = msg.author.username;
     };
     var channel_name = ('lobby-'+input).split(" ").join("-");
-    var encoded_room_name = encode_channel(channel_name);
+    var channel_nameV2 = channel_name.split("02010c0c1743").join("");
+    var encoded_room_name = encode_channel(channel_nameV2);
     console.log('Encoded Room Code ' + encoded_room_name);
     if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
         msg.author.send({embed: {
@@ -80,7 +81,7 @@ client.on("message", async msg => {
   }
   else if (input.includes('-close')){
     input = input.split("-close").join("")
-    var decoded_room_name = decode_channel(input);
+    var decoded_room_name = ('02010c0c1743'+decode_channel(input));
     console.log('Decoded Room Code ' + decoded_room_name);
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete()
