@@ -20,7 +20,7 @@ const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzl
 const lobby_hub = '844708676182999080'
 const lobby_category = '845071627515592714'
 const serverId = '844644376826085426'
-const guild = client.guilds.cache.get("844644376826085426");
+const guild = client.channels.cache.get("844644376826085426");
 //
 
 /*
