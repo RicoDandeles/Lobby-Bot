@@ -73,7 +73,7 @@ client.on("message", async msg => {
                 ]
         }});
         const member = msg.member;
-        member.roles.add(role);
+        member.roles.add(roleID);
     }
     
   }
