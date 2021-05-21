@@ -51,7 +51,7 @@ client.on("message", async msg => {
     var channel_nameV2 = channel_name.split("lobby-").join("").split(" ").join("-");
     var encoded_room_name = encode_channel(channel_nameV2);
     console.log('Encoded Room Code ' + encoded_room_name);
-    if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
+    if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
         msg.author.send({embed: {
                 color: 15158332,
                 title: "An error has occured.",
@@ -79,6 +79,10 @@ client.on("message", async msg => {
     console.log('Decoded Room Code ' + decoded_room_name);
     const closed_channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
     closed_channel.delete()
+    let role = (msg.member.roles.cache.some(role => role.id === '845381979205140490'));
+    if (msg.member.roles.cache.some(role => role.id === '845381979205140490')) {
+        msg.member.removeRole(role)
+    }
   }
   else return;
 });
