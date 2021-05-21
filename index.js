@@ -55,7 +55,9 @@ client.on("message", async msg => {
         input = msg.author.username;
     };
     var channel_name = ('lobby-'+input).split(" ").join("-");
+    channel_name = truncate(channel_name, 18);
     var channel_nameV2 = channel_name.split("lobby-").join("");
+    channel_nameV2 = truncate(channel_nameV2, 12);
     var encoded_room_name = encode_channel(channel_name);
     var encoded_room_nameV2 = encode_channel(channel_nameV2);
     console.log('Encoded Room Code ' + encoded_room_name);
