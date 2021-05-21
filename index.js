@@ -71,7 +71,7 @@ client.on("message", async msg => {
                     { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
                 ]
         }});
-        msg.member.add(role);
+        // msg.member.add(role);
     }
     
   }
