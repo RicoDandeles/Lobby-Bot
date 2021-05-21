@@ -49,9 +49,9 @@ client.on("message", async msg => {
     input = input.split("+lobby").join("")
     input = truncate(input, 16);
     if (input === "") {
-        input = 'lobby - ' + msg.author.username;
+        input = msg.author.username;
     };
-    var channel_name = ('lobby-' + input).split(" ").join("-");
+    var channel_name = ('lobby-'+input).split(" ").join("-");
     var encoded_room_name = encode_channel(channel_name);
     console.log('Encoded Room Code ' + encoded_room_name);
     if(msg.member.roles.cache.find(r => r.name === "Lobby Host")) {
