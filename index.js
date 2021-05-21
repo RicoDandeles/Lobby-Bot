@@ -60,6 +60,7 @@ client.on("message", async msg => {
                     { name: "Error:", value: "You can't host two games at once! We plan to allow users to host more lobbies in the future. If you believe you are at this page in an error, please contact admins.", inline: true},
                 ]
         }});
+        console.log('Denied');
         return;
     }
     else {
@@ -73,6 +74,7 @@ client.on("message", async msg => {
         }});
         var member = msg.member;
         member.roles.add(role);
+        console.log('Approved');
     }
     
   }
@@ -86,6 +88,7 @@ client.on("message", async msg => {
         var member = msg.member;
         member.roles.remove(role);
     }
+    console.log('Close Success');
   }
   else return;
 });
