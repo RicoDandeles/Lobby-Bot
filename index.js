@@ -44,7 +44,7 @@ client.on("message", async msg => {
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  var input = truncate(msg.content, 24); // filter special characters
+  var input = msg.content; // filter special characters
   input = input.split(" ").join("").split("`").join("").split("~").join("").split("/").join("").split("\\").join("").split("*").join("").split("^").join("").split("%").join("").split("$").join("").split("@").join("").split("#").join("").split("_").join("").split("+").join("").split("=").join("").split(";").join("").split(":").join("").split("'").join("").split("\"").join("").split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("");
   console.log(input);
   msg.delete();
