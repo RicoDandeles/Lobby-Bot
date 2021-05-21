@@ -44,8 +44,8 @@ client.on("message", async msg => {
   var active_channel;
   if (messaged_channel == lobby_hub) active_channel = lobby_hub;
   else return;
-  var input = msg.content;
-  input = input.split(" ").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("[").join("").split("]").join("")
+  var input = msg.content; // filter {? ! , . < > ( ) { } [ ] }
+  input = input.split(" ").join("").split("?").join("").split("!").join("").split(",").join("").split(".").join("").split("<").join("").split(">").join("").split("(").join("").split(")").join("").split("{").join("").split("}").join("").split("[").join("").split("]").join("")
   console.log(input);
   if (input.includes('+lobby')){
     input = input.split("+lobby").join("")
