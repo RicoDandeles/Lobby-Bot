@@ -59,6 +59,7 @@ client.on("message", async msg => {
                     { name: "Error:", value: "You can't host play two games at once! We plan to allow users to host more lobbies in the future. If you believe you are at this page in an error, please contact admins.", inline: true},
                 ]
         }});
+        return;
     }
     else {
         createPrivateChannel(serverId, channel_name, msg);
