@@ -61,7 +61,6 @@ client.on("message", async msg => {
                 ]
         }});
         console.log('Denied');
-        return;
     }
     else {
         createPrivateChannel(serverId, channel_name, msg);
