@@ -68,7 +68,8 @@ client.on("message", async msg => {
                 color: 3066993,
                 title: "Success.",
                 fields: [
-                    { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`.", inline: true},
+                    { name: "How to invite people to your channel:", value: "DM this command to your friends to paste into #room-hub  `+join "+ encoded_room_name +"`."},
+                    { name: "How to close your channel:", value: "When you are done, you may close a channel with `-close "+ encoded_room_name +"`."},
                 ]
         }});
         var member = msg.member;
@@ -89,6 +90,13 @@ client.on("message", async msg => {
     }
     console.log('Close Success');
   }
+  else if (input.includes('+join')){
+      input = input.split("+join").join("")
+      var decoded_room_name = ('lobby-'+decode_channel(input));
+      console.log('Decoded Room Code ' + decoded_room_name);
+      const channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
+      joinPrivateChannel(serverId, channel, msg);
+  }
   else return;
 });
 
@@ -102,12 +110,19 @@ async function createPrivateChannel(serverId, channelName, message) {
   const channel = await guild.channels.create(channelName, 'lobby')
   await channel.setParent(lobby_category);
   await channel.overwritePermissions([
-    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.MANAGE_ROLES]},
+    {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     {type: 'role', id: everyoneRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
   ]);
   channel.send('+start');
   return;
 }
+
+async function joinPrivateChannel(serverId, channel, message){
+    const guild = await client.guilds.fetch(serverId);
+    await channel.overwritePermissions([
+        {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+    ]);
+};
 
 function generateSerial() {
     'use strict';
