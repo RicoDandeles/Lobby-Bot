@@ -90,8 +90,8 @@ client.on("message", async msg => {
     }
     console.log('Close Success');
   }
-  else if (input.includes('+join')){
-      input = input.split("+join").join("")
+  else if (input.includes('join')){
+      input = input.split("join").join("")
       var decoded_room_name = ('lobby-'+decode_channel(input));
       console.log('Decoded Room Code ' + decoded_room_name);
       const channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
