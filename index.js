@@ -95,7 +95,7 @@ client.on("message", async msg => {
       var decoded_room_name = ('lobby-'+decode_channel(input));
       console.log('Decoded Room Code ' + decoded_room_name);
       const channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
-      joinPrivateChannel(serverId, channel, msg);
+      joinPrivateChannel(serverId, channel.id, msg);
   }
   else return;
 });
