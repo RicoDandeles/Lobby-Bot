@@ -95,7 +95,7 @@ client.on("message", async msg => {
       var decoded_room_name = ('lobby-'+decode_channel(input));
       console.log('Decoded Room Code ' + decoded_room_name);
       const channel = msg.guild.channels.cache.find(r => r.name === `${decoded_room_name}`);
-      joinPrivateChannel(serverId, channel.id, msg);
+      joinPrivateChannel(serverId, channel, msg);
   }
   else return;
 });
@@ -106,7 +106,6 @@ client.on("message", async msg => {
 async function createPrivateChannel(serverId, channelName, message) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
-  const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby')
   await channel.setParent(lobby_category);
   await channel.overwritePermissions([
@@ -119,9 +118,9 @@ async function createPrivateChannel(serverId, channelName, message) {
 
 async function joinPrivateChannel(serverId, channel, message){
     const guild = await client.guilds.fetch(serverId);
-    console.log('Joining User ID: ' + message.author.id);
+    const staffRole = guild.roles.Owner;
     await channel.updateOverwrite(
-        { type: 'member', id: message.author.id, allow: ['VIEW_CHANNEL']},
+        {type: 'role', id: staffRole.id, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
     );
 };
 
