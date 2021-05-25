@@ -117,8 +117,8 @@ async function createPrivateChannel(serverId, channelName, message) {
 }
 
 async function joinPrivateChannel(serverId, channel, message){
+    const joiner = guild.client.user.get(message.author.id);
     await channel.updateOverwrite(
-        const joiner = guild.client.user.get(message.author.id);
         {type: 'member', id: joiner, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
     );
 };
