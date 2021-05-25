@@ -119,7 +119,7 @@ async function createPrivateChannel(serverId, channelName, message) {
 
 async function joinPrivateChannel(serverId, channel, message){
     const guild = await client.guilds.fetch(serverId);
-    await channel.overwritePermissions([
+    await channel.updateOverwrite([
         {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
     ]);
 };
