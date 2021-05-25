@@ -120,7 +120,7 @@ async function createPrivateChannel(serverId, channelName, message) {
 async function joinPrivateChannel(serverId, channel, message){
     console.log('Joining User ID: ' + message.author.id);
     await channel.updateOverwrite(
-        { id: message.author.id, allow: ['VIEW_CHANNEL']},
+        { id: message.author.username, allow: ['VIEW_CHANNEL']},
     );
 };
 
