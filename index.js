@@ -106,6 +106,7 @@ client.on("message", async msg => {
 async function createPrivateChannel(serverId, channelName, message) {
   const guild = await client.guilds.fetch(serverId);
   const everyoneRole = guild.roles.everyone;
+  const staffRole = guild.roles.Owner;
   const channel = await guild.channels.create(channelName, 'lobby')
   await channel.setParent(lobby_category);
   await channel.overwritePermissions([
@@ -117,10 +118,10 @@ async function createPrivateChannel(serverId, channelName, message) {
 }
 
 async function joinPrivateChannel(serverId, channel, message){
-    const joiner = guild.client.users.get(message.author.id);
-    await channel.updateOverwrite(
-        {type: 'member', id: joiner, deny: [Permissions.FLAGS.VIEW_CHANNEL]},
-    );
+    const guild = await client.guilds.fetch(serverId);
+    await channel.overwritePermissions([
+        {type: 'member', id: message.author.id, allow: [Permissions.FLAGS.VIEW_CHANNEL]},
+    ]);
 };
 
 function generateSerial() {
