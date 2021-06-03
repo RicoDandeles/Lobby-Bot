@@ -15,13 +15,13 @@ const { Client, Permissions } = require('discord.js');
 const client = new Discord.Client();
 
 // CHANGE THESE
-const discordusername = 'Lobby Bot#3340'
-const discordtoken = 'ODQ0NzA5NzA0MDkyMzUyNTQy.YKWXNw.3aWJ_MmCHLNvFFTjf6cldfhjzlQ'
-const lobby_hub = '844708676182999080'
-const lobby_category = '845071627515592714'
-const serverId = '844644376826085426'
-const guild = client.channels.cache.get("844644376826085426");
-const role = ('845381979205140490');
+const discordusername = 'Lobby Bot#3591'
+const discordtoken = 'ODQ4MDc0NTA2MTY5MDkwMDQ4.YLHU7g.EiAgl0L5nK8hPOi_DrOziddBLQ0'
+const lobby_hub = '848036903121977344'
+const lobby_category = '850053135111946321'
+const serverId = '848036294713016340'
+const guild = client.channels.cache.get("848036294713016340");
+const role = ('850054354517884949'); // lobby host
 //
 
 client.on("ready", () => {
